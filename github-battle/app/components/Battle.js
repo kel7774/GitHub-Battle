@@ -1,8 +1,7 @@
-
-var React = require('react');
-var PropTypes = require('prop-types');
-var Link = require('react-router-dom').Link;
-var PlayerPreview = require('./PlayerPreview');
+const React = require('react');
+const PropTypes = require('prop-types');
+const Link = require('react-router-dom').Link;
+const PlayerPreview = require('./PlayerPreview');
 
 class PlayerInput extends React.Component {
   constructor(props) {
@@ -14,23 +13,24 @@ class PlayerInput extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
-    var value = event.target.value;
 
-    this.setState(function () {
+  handleChange(e) {
+    let value = e.target.value;
+    this.setState(() => {
       return {
         username: value
       }
     });
   }
-  handleSubmit(event) {
-    event.preventDefault();
 
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.onSubmit(
       this.props.id,
       this.state.username
     );
   }
+
   render() {
     return (
       <form className='column' onSubmit={this.handleSubmit}>
@@ -76,28 +76,31 @@ class Battle extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleSubmit(id, username) {
-    this.setState(function () {
-      var newState = {};
+    this.setState(() => {
+      let newState = {};
       newState[id + 'Name'] = username;
-      newState[id + 'Image'] = 'https://github.com/' + username + '.png?size=200'
+      newState[id + 'Image'] = `https://github.com/${username}.png?size=200`
       return newState;
     });
   }
+
   handleReset(id) {
-    this.setState(function () {
-      var newState = {};
+    this.setState(() => {
+      let newState = {};
       newState[id + 'Name'] = '';
       newState[id + 'Image'] = null;
       return newState;
     })
   }
+
   render() {
-    var match = this.props.match;
-    var playerOneName = this.state.playerOneName;
-    var playerOneImage = this.state.playerOneImage;
-    var playerTwoName = this.state.playerTwoName;
-    var playerTwoImage = this.state.playerTwoImage;
+    let match = this.props.match;
+    let playerOneName = this.state.playerOneName;
+    let playerOneImage = this.state.playerOneImage;
+    let playerTwoName = this.state.playerTwoName;
+    let playerTwoImage = this.state.playerTwoImage;
 
     return (
       <div>
