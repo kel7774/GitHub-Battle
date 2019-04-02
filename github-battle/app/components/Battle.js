@@ -1,7 +1,7 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const Link = require('react-router-dom').Link;
-const PlayerPreview = require('./PlayerPreview');
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import PlayerPreview from './PlayerPreview'
 
 class PlayerInput extends React.Component {
   constructor(props) {
@@ -9,9 +9,6 @@ class PlayerInput extends React.Component {
     this.state = {
       username: ''
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -29,10 +26,8 @@ class PlayerInput extends React.Component {
   }
 
   render() {
-
     const { username } = this.state
     const { label } = this.props
-
     return (
       <form className='column' onSubmit={this.handleSubmit}>
         <label className='header' htmlFor='username'>{label}</label>
@@ -74,8 +69,6 @@ class Battle extends React.Component {
       playerOneImage: null,
       playerTwoImage: null,
     };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(id, username) {
@@ -93,13 +86,12 @@ class Battle extends React.Component {
   }
 
   render() {
-   const { match } = this.props
-
-    const { playerOneName, playerOneImage, playerTwoName, playerTwoImage } = this.state
-
+  const { match } = this.props
+  const { playerOneName, playerOneImage, playerTwoName, playerTwoImage } = this.state
     return (
       <div>
         <div className='row'>
+
           {!playerOneName &&
             <PlayerInput
               id='playerOne'
@@ -146,9 +138,10 @@ class Battle extends React.Component {
             }}>
               Battle
           </Link>}
+
       </div>
     )
   }
 }
 
-module.exports = Battle;
+export default Battle;
