@@ -4,20 +4,25 @@ import { Link } from 'react-router-dom'
 import PlayerPreview from './PlayerPreview'
 
 class PlayerInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: ''
-    };
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  }
+  static defaultProps = {
+    label: 'Username',
+  }
+  state = {
+    username: ""
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     const value = e.target.value;
     this.setState(() => ({username: value
     }))
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(
       this.props.id,
@@ -50,35 +55,22 @@ class PlayerInput extends React.Component {
   }
 }
 
-PlayerInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-}
-
-PlayerInput.defaultProps = {
-  label: 'Username',
-}
-
 class Battle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playerOneName: '',
+  state = {
+    playerOneName: '',
       playerTwoName: '',
       playerOneImage: null,
       playerTwoImage: null,
-    };
   }
 
-  handleSubmit(id, username) {
+  handleSubmit = (id, username) => {
     this.setState(() => ({
       [id + 'Name']: username,
       [id + 'Image']: `https://github.com/${username}.png?size=200`
     }))
   }
 
-  handleReset(id) {
+  handleReset = (id) => {
     this.setState(() => ({
       [id + 'Name']: '',
       [id + 'Image']: null
@@ -138,7 +130,6 @@ class Battle extends React.Component {
             }}>
               Battle
           </Link>}
-
       </div>
     )
   }
